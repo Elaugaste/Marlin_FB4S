@@ -2763,11 +2763,6 @@ void Stepper::report_positions() {
     #define _SAVE_START() const hal_timer_t pulse_start = HAL_timer_get_count(PULSE_TIMER_NUM)
     #define _PULSE_WAIT() while (EXTRA_CYCLES_BABYSTEP > (uint32_t)(HAL_timer_get_count(PULSE_TIMER_NUM) - pulse_start) * (PULSE_TIMER_PRESCALE)) { /* nada */ }
   #else
-        timer_pause( PWM_TIMER_DEV ); 
-        timer_set_count( PWM_TIMER_DEV , 0);
-        timer_set_reload( PWM_TIMER_DEV , 0x0FFF);
-        timer_generate_update( PWM_TIMER_DEV );
-        timer_resume( PWM_TIMER_DEV );
     #define _SAVE_START() NOOP
     #if EXTRA_CYCLES_BABYSTEP > 0
       #define _PULSE_WAIT() DELAY_NS(EXTRA_CYCLES_BABYSTEP * NANOSECONDS_PER_CYCLE)
@@ -3031,6 +3026,11 @@ void Stepper::report_positions() {
         }
 
       #elif HAS_MOTOR_CURRENT_PWM
+          timer_pause( PWM_TIMER_DEV ); 
+          timer_set_count( PWM_TIMER_DEV , 0);
+          timer_set_reload( PWM_TIMER_DEV , 0x0FFF);
+          timer_generate_update( PWM_TIMER_DEV );
+          timer_resume( PWM_TIMER_DEV );
 
         #if PIN_EXISTS(MOTOR_CURRENT_PWM_X)
           SET_PWM(MOTOR_CURRENT_PWM_X_PIN);
