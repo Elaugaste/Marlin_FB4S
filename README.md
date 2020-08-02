@@ -6,5 +6,5 @@
 [ Ссылка на исходный репозиторий ] (https://github.com/Sergey1560/Marlin_FB4S)
 
 ## Изменения отностиельно основного репозитория
-* Конфиг под KingRoon KP3
+* Конфиг под KingRoon KP3 (включен bltouch, шаги экструдера под BMG)
 * Патчи для снижения шума предложенные тут (https://3dtoday.ru/blogs/malderin/istoriya-pro-to-kak-ya-kupil-moy-pervyy-printer-kingroon-kp3-180/#comment-707384)
