@@ -70,6 +70,7 @@ typedef uint16_t hal_timer_t;
     #define STEP_TIMER_NUM      4  // For C8/CB boards, use timer 4
   #else
     #define STEP_TIMER_NUM      5  // for other boards, five is fine.
+    #define PWM_TIMER_NUM 3
   #endif
 #endif
 #ifndef PULSE_TIMER_NUM
@@ -101,7 +102,7 @@ typedef uint16_t hal_timer_t;
 #define STEPPER_TIMER_PRESCALE 18             // prescaler for setting stepper timer, 4Mhz
 #define STEPPER_TIMER_RATE     (HAL_TIMER_RATE / STEPPER_TIMER_PRESCALE)   // frequency of stepper timer
 #define STEPPER_TIMER_TICKS_PER_US ((STEPPER_TIMER_RATE) / 1000000) // stepper timer ticks per µs
-
+ #define PWM_TIMER_DEV TIMER_DEV(PWM_TIMER_NUM)  
 #define PULSE_TIMER_RATE       STEPPER_TIMER_RATE   // frequency of pulse timer
 #define PULSE_TIMER_PRESCALE   STEPPER_TIMER_PRESCALE
 #define PULSE_TIMER_TICKS_PER_US STEPPER_TIMER_TICKS_PER_US
